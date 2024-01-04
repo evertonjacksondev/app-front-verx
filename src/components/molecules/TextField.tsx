@@ -1,4 +1,5 @@
 
+import { Fragment } from "react";
 import { Input } from "../atoms/Input";
 
 interface ITextField {
@@ -7,8 +8,8 @@ interface ITextField {
 
 export const TextField = ({ name }: ITextField) => {
     return (
-        <Input>
+        <Fragment>
             {name}
-        </Input>
-    )
+            <Input name={name} />
+        </Fragment>)
 }
