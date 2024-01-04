@@ -78,24 +78,25 @@ export const Modal = () => {
   const handleClick = () => {
     setIsActiveModal(!isActiveModal)
   }
+
+
   return (
     <ModalContainer>
       <ModalContainerListItems>
         <ModalBar icon='product' name="Cadastrar Produtor Rural" />
         <ModalListItems>
           <ModalItem>
-            <TextFieldMask name="CPF ou CNPJ" mask="99.999.999/9999-99" key="1" />
-            <TextField name="Nome do produtor" key="2" />
-            <TextField name="Nome da Fazenda" key="3" />
-            <TextField name="Cidade" key="4" />
+            <TextFieldMask name='document' placeHolder="CPF ou CNPJ" mask="99.999.999/9999-99" key="1" />
+            <TextField name="nameClient" placeHolder="Nome do produtor" key="2" />
+            <TextField name="nameFarm" placeHolder="Nome da Fazenda" key="3" />
+            <TextField name="city" placeHolder="Cidade" key="4" />
           </ModalItem>
           <ModalItem>
-            <SelectField name='UF' option={ufData}></SelectField>
-            <TextField name="Área total em hectares da fazenda" key="6" />
-            <TextField name="Área agricultável em hectares" key="7" />
-            <TextField name="Área de vegetação em hectares" key="78" />
-            <SelectField name="Culturas plantadas"  option={productData} key="9" />
-           
+            <SelectField name="UF" placeHolder='UF' option={ufData}></SelectField>
+            <TextField name="farmArea" placeHolder="Área total em hectares da fazenda" key="6" />
+            <TextField name="availableArea" placeHolder="Área agricultável em hectares" key="7" />
+            <TextField name="unavailableArea" placeHolder="Área de vegetação em hectares" key="8" />
+            <SelectField name="product" placeHolder="Culturas plantadas" option={productData} key="9" />
           </ModalItem>
         </ModalListItems>
         <ModalListItemsButton>

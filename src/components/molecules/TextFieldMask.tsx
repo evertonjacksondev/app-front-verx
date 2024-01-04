@@ -47,12 +47,13 @@ export const InputMaskField = styled(InputMask) <IInputProps>`
 interface ITextFieldMask {
   name: string
   mask: string
+  placeHolder: string
 }
 
-export const TextFieldMask = ({ name, mask }: ITextFieldMask) => {
+export const TextFieldMask = ({ name, mask, placeHolder }: ITextFieldMask) => {
   return (
     <Fragment>
-      {name}
+      {placeHolder}
       <InputMaskField name={name} mask={mask} />
     </Fragment>
   )

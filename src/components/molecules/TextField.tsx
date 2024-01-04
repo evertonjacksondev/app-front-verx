@@ -4,12 +4,13 @@ import { Input } from "../atoms/Input";
 
 interface ITextField {
     name: string
+    placeHolder: string
 }
 
-export const TextField = ({ name }: ITextField) => {
+export const TextField = ({ name, placeHolder }: ITextField) => {
     return (
         <Fragment>
-            {name}
+            {placeHolder}
             <Input name={name} />
         </Fragment>)
 }

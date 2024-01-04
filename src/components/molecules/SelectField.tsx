@@ -2,17 +2,18 @@ import { Fragment } from "react"
 import { Select } from "../atoms/Select"
 
 interface ISelectProps {
-    name: string,
-    option: { id: string | number, name: string; value: string }[];
+    name: string
+    option: { id: string | number, name: string; value: string }[]
+    placeHolder: string
 }
 
-export const SelectField = ({ name, option }: ISelectProps) => {
+export const SelectField = ({ name, placeHolder, option }: ISelectProps) => {
 
 
     return (
 
         <Fragment>
-            {name}
+            {placeHolder}
             <Select name={name}>
                 <option value="" hidden>Selecione a {name}</option>
                 {option.map((items) => (
