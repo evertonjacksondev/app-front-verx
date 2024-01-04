@@ -4,15 +4,15 @@ O teste tem como objetivo acurar as habilidades do candidato em resolver alguns 
 
 O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
 
-1.  CPF ou CNPJ
-2.  Nome do produtor
-3.  Nome da Fazenda
-4.  Cidade
-5.  Estado
-6.  Área total em hectares da fazenda
-7.  Área agricultável em hectares
-8.  Área de vegetação em hectares
-9.  Culturas plantadas (Soja, Milho, Algodão, Café, Cana de Açucar)
+1. [] - CPF ou CNPJ
+2. [] - Nome do produtor
+3. [] - Nome da Fazenda
+4. [] - Cidade
+5. [] - Estado
+6. [] - Área total em hectares da fazenda
+7. [] - Área agricultável em hectares
+8. [] - Área de vegetação em hectares
+9. [] - Culturas plantadas (Soja, Milho, Algodão, Café, Cana de Açucar)
 
 # Requisitos de negócio
 
