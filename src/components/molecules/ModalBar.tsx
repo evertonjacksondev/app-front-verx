@@ -11,8 +11,6 @@ interface IModalBarProps {
     icon: string,
 }
 
-
-
 export const ModalBar = ({ name }: IModalBarProps) => {
 
 
