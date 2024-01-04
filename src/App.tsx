@@ -1,12 +1,14 @@
+import { Fragment } from "react"
+import { Router } from "./routers/Router"
 
 
-function App() {
+const App = () => {
 
 
   return (
-    <>
- 
-    </>
+    <Fragment>
+      <Router />
+    </Fragment>
   )
 }
 
