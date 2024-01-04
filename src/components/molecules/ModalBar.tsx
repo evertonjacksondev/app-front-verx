@@ -8,7 +8,7 @@ padding:20px;
 
 interface IModalBarProps {
     name: string,
-    icon: string,
+    icon?: string,
 }
 
 export const ModalBar = ({ name }: IModalBarProps) => {
