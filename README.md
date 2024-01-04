@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# Teste - Brain Agriculture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O teste tem como objetivo acurar as habilidades do candidato em resolver alguns problemas relacionados à lógica de programação, regra de negócio e orientação à objetos.
 
-Currently, two official plugins are available:
+O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  CPF ou CNPJ
+2.  Nome do produtor
+3.  Nome da Fazenda
+4.  Cidade
+5.  Estado
+6.  Área total em hectares da fazenda
+7.  Área agricultável em hectares
+8.  Área de vegetação em hectares
+9.  Culturas plantadas (Soja, Milho, Algodão, Café, Cana de Açucar)
 
-## Expanding the ESLint configuration
+# Requisitos de negócio
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- O usuário deverá ter a possibilidade de cadastrar, editar, e excluir produtores rurais.
+- O sistema deverá validar CPF e CNPJ digitados incorretamente.
+- A soma de área agrícultável e vegetação, não deverá ser maior que a área total da fazenda
+- Cada produtor pode plantar mais de uma cultura em sua Fazenda.
+- A plataforma deverá ter um Dashboard que exiba:
+  - Total de fazendas em quantidade
+  - Total de fazendas em hectares (área total)
+  - Gráfico de pizza por estado.
+  - Gráfico de pizza por cultura.
+  - Gráfico de pizza por uso de solo (Área agricultável e vegetação)
