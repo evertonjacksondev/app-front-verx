@@ -7,6 +7,7 @@ import { Fragment } from "react";
 export const ContainerModalBar = styled.div`
 padding:20px;
 display:flex;
+background-color:#4477CE;
 align-items:center;
 `
 

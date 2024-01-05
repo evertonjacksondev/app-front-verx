@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Line = styled.hr`
-	border-top: 1px solid #07689D;
+    border:0px;
+	border-top: 5px solid #f0f0f0;
     border-color: #07689D;
-    border-width:2px;
  ;
  `

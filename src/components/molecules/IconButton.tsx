@@ -10,7 +10,7 @@ interface IIconButtonProps {
     tooltipTitle?: string
     background?: string
     children?: ReactNode
-    label: string
+    label?: string
     outlined?: boolean
     onClick: MouseEventHandler<HTMLButtonElement>
     others?: any,
@@ -30,7 +30,6 @@ export const IconButton = (
     return (
         <Fragment>
             <Tooltip title={tooltipTitle}>
-
                 <Button {...others} background={background}>
                     {isLoadingIcon && (<CircularProgress style={{ width: 40 }} />)}
                     {!isLoadingIcon && (<Icon  name={iconName} />)}
