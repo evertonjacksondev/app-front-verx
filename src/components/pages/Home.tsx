@@ -1,17 +1,15 @@
-import { Fragment, useState } from "react"
-import { useProviderGlobal } from "../../context/global.context"
+import { Fragment } from "react"
 import { ModalHome } from '../organisms/ModalHome'
 import ListOfProducers from "../../db/ListOfProducers.json"
-import { NewTable } from "../organisms/Table"
+import { TableHome } from "../organisms/TableHome"
 import { IconButton } from "../molecules/IconButton"
 import { Container } from "../atoms/Container"
 import { Item } from "../atoms/Item"
-import Chart from "react-google-charts"
-import { DashBoards } from "../organisms/DashBoards"
+import { DashBoards } from "../organisms/DashBoardHome"
 
 export const Home = () => {
 
-    const { isActiveModal, setIsActiveModal } = useProviderGlobal()
+   
 
     const handleOpen = () => {
         console.log('cheguei open')
@@ -84,13 +82,7 @@ export const Home = () => {
         <Fragment>
             <DashBoards />
             <ModalHome />
-            <NewTable columns={columns} dataSource={ListOfProducers}>
-                <IconButton
-                    iconName="add"
-                    label="Adicionar Produtor"
-                    isLoadingIcon={false}
-                    onClick={() => setIsActiveModal(!isActiveModal)} />
-            </NewTable>
+            <TableHome columns={columns} dataSource={ListOfProducers}/>
         </Fragment>
     )
 }

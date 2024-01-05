@@ -1,12 +1,12 @@
 import { Table } from "antd"
-import { ReactNode } from "react"
 import styled from "styled-components"
+import { IconButton } from "../molecules/IconButton"
+import { useProviderGlobal } from "../../context/global.context"
 
 interface ITableProps {
 
     columns: Array<any>
     dataSource: Array<any>
-    children: ReactNode
 }
 
 const ContainerTable = styled.div`
@@ -17,12 +17,12 @@ flex-direction:column;
 gap:8px;
 `
 const ItemTable = styled.div`
-width:1220px;
+width:1100px;
 
 `
 const ContainerItemTableButton = styled.div`
 display:flex;
-width:1220px;
+width:1100px;
 justify-content:flex-end;
 
 `
@@ -30,18 +30,22 @@ const ItemButton = styled.div`
 
 
 `
-export const NewTable = ({ columns, dataSource, children }: ITableProps) => {
-
+export const TableHome = ({ columns, dataSource }: ITableProps) => {
+    const { isActiveModal, setIsActiveModal } = useProviderGlobal()
 
     return (
         <ContainerTable>
             <ContainerItemTableButton>
                 <ItemButton>
-                    {children}
+                    <IconButton
+                        iconName="add"
+                        label="Adicionar Produtor"
+                        isLoadingIcon={false}
+                        onClick={() => setIsActiveModal(!isActiveModal)} />
                 </ItemButton>
             </ContainerItemTableButton>
             <ItemTable>
-                <Table columns={columns} dataSource={dataSource} />
+                <Table rowKey='id' columns={columns} dataSource={dataSource} />
             </ItemTable>
         </ContainerTable>
 

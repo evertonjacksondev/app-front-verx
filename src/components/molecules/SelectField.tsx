@@ -5,17 +5,18 @@ interface ISelectProps {
     name: string
     option: { id: string | number, name: string; value: string }[]
     placeHolder: string
+    defaultValue: string
 }
 
-export const SelectField = ({ name, placeHolder, option }: ISelectProps) => {
+export const SelectField = ({ defaultValue,name, placeHolder, option }: ISelectProps) => {
 
 
     return (
 
         <Fragment>
             {placeHolder}
-            <Select name={name}>
-                <option value="" hidden>Selecione a {name}</option>
+            <Select defaultValue={defaultValue} name={name}>
+                <option value={defaultValue} hidden>Selecione a {name}</option>
                 {option.map((items) => (
                     <option key={items.id} value={items.name}>
                         {items.value}

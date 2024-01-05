@@ -8,7 +8,7 @@ interface IContainerProps {
 
 const ContainerStyle = styled.div`
 display:flex;
-max-width:1200px;
+max-width:1100px;
 justify-content:center;
 
 `

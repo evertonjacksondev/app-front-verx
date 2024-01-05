@@ -72,7 +72,7 @@ flex-direction:row;
 
 
 export const ModalHome = () => {
-  const { isActiveModal, setIsActiveModal } = useProviderGlobal()
+  const { isActiveModal = false, setIsActiveModal } = useProviderGlobal()
 
   if (!isActiveModal) return
 
@@ -95,11 +95,11 @@ export const ModalHome = () => {
             <TextField name="city" placeHolder="Cidade" key="4" />
           </ModalItem>
           <ModalItem>
-            <SelectField name="UF" placeHolder='UF' option={ufData}></SelectField>
+            <SelectField defaultValue="UF" name="UF" placeHolder='UF' option={ufData}></SelectField>
             <TextField name="farmArea" placeHolder="Área total em hectares da fazenda" key="6" />
             <TextField name="availableArea" placeHolder="Área agricultável em hectares" key="7" />
             <TextField name="unavailableArea" placeHolder="Área de vegetação em hectares" key="8" />
-            <SelectField name="product" placeHolder="Culturas plantadas" option={productData} key="9" />
+            <SelectField defaultValue="UF" name="product" placeHolder="Culturas plantadas" option={productData} key="9" />
           </ModalItem>
         </ModalListItems>
         <ModalListItemsButton>

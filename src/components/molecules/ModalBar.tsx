@@ -7,8 +7,10 @@ import { Fragment } from "react";
 export const ContainerModalBar = styled.div`
 padding:20px;
 display:flex;
-background-color:#4477CE;
+background-color:#07689D;
 align-items:center;
+box-shadow: 0 1px 10px rgb(0 0 0 / 0.65);
+margin-bottom:10px;
 `
 
 export const ModalBarItem = styled.div`
@@ -27,11 +29,11 @@ export const ModalBar = ({ name, iconName }: IModalBarProps) => {
     return (
         <Fragment>
             <ContainerModalBar>
-            <ModalBarItem>
+                <ModalBarItem>
                     <Icon name={iconName}></Icon>
                 </ModalBarItem>
                 <ModalBarItem>
-                    <Paragraph> {name}</Paragraph>
+                    <Paragraph color="white"> {name}</Paragraph>
                     <Line></Line>
                 </ModalBarItem>
             </ContainerModalBar>

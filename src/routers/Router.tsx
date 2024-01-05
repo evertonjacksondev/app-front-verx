@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "../components/pages/Home";
+import { NavBar } from "../components/template/NavBar";
 
 
 export const Router = () => {
@@ -7,7 +8,9 @@ export const Router = () => {
     return (
         <BrowserRouter >
             <Routes>
-                <Route path="*" element={<Home />} />
+                <Route element={<NavBar />}>
+                    <Route path="*" element={<Home />} />
+                </Route>
             </Routes>
         </BrowserRouter >
     )

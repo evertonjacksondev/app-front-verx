@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
-export const Paragraph = styled.p`
-font-size:16;
+interface IProps {
+    color?: string
+}
+export const Paragraph = styled.p<IProps>`
+font-size:18;
+color:${(props) => props.color ? props.color : 'black' }} ;
 `
