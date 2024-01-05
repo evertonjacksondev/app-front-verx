@@ -16,7 +16,6 @@ height:90vh;
 `
 const ContainerItemTable = styled.div`
 width:1220px;
-
 `
 
 export const NewTable = ({ columns, dataSource }: ITableProps) => {

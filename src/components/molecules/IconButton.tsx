@@ -1,17 +1,43 @@
+import { Fragment, MouseEventHandler, ReactNode } from "react";
 import { Button } from "../atoms/Button"
-import { FaRegMoon } from "react-icons/fa";
+import { CircularProgress, Tooltip } from "@mui/material";
+import { Icon } from "../atoms/Icon";
+
 
 interface IIconButtonProps {
-    name?: string
+    iconName: string
+    isLoadingIcon: boolean
+    tooltipTitle?: string
+    background?: string
+    children?: ReactNode
+    label: string
+    outlined?: boolean
+    onClick: MouseEventHandler<HTMLButtonElement>
+    others?: any,
 }
 
 
-export const IconButton = ({ name }: IIconButtonProps) => {
 
+export const IconButton = (
+    { isLoadingIcon = false,
+        tooltipTitle = '',
+        iconName,
+        background,
+        label,
+        children,
+        outlined = false,
+        ...others }: IIconButtonProps) => {
     return (
-        <Button>
-            <FaRegMoon />
-            {name}
-        </Button>
-    )
-}
+        <Fragment>
+            <Tooltip title={tooltipTitle}>
+
+                <Button {...others} background={background}>
+                    {isLoadingIcon && (<CircularProgress style={{ width: 40 }} />)}
+                    {!isLoadingIcon && (<Icon  name={iconName} />)}
+                    {label}
+                    {children}
+                </Button>
+            </Tooltip>
+        </Fragment>
+    );
+};

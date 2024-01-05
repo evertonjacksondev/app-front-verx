@@ -1,15 +1,21 @@
 import { Fragment } from "react"
-import { Button } from "../atoms/Button"
 import { useProviderGlobal } from "../../context/global.context"
 import { Modal } from '../organisms/Modal'
 import ListOfProducers from "../../db/ListOfProducers.json"
-import { IconButton } from "../molecules/IconButton"
 import { NewTable } from "../organisms/Table"
+import { IconButton } from "../molecules/IconButton"
 
 export const Home = () => {
 
     const { isActiveModal, setIsActiveModal } = useProviderGlobal()
 
+    const handleOpen = () => {
+        console.log('cheguei open')
+
+    }
+    const handleDelete = () => {
+        console.log('cheguei delete')
+    }
 
     const columns = [
         {
@@ -54,10 +60,17 @@ export const Home = () => {
             render: () => {
                 return (
                     <Fragment>
-                        <IconButton name="Delete" />
-                        <IconButton name="Ver" />
+                        <IconButton
+                            isLoadingIcon={false}
+                            label="Deletar"
+                            iconName="delete"
+                            onClick={handleOpen} />
+                        <IconButton
+                            isLoadingIcon={false}
+                            label="Ver"
+                            iconName="search"
+                            onClick={handleDelete} />
                     </Fragment>)
-
             },
         },
 
@@ -65,7 +78,11 @@ export const Home = () => {
     return (
         <Fragment>
             <Modal />
-            <Button onClick={() => setIsActiveModal(!isActiveModal)}>Adicionar Produtor</Button>
+            <IconButton
+                iconName="add"
+                label="Adicionar Produtor"
+                isLoadingIcon={false}
+                onClick={() => setIsActiveModal(!isActiveModal)} />
             <NewTable columns={columns} dataSource={ListOfProducers} />
         </Fragment>
     )

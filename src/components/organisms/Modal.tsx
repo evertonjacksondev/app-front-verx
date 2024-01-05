@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button } from "../atoms/Button";
 import { useProviderGlobal } from "../../context/global.context";
 import { TextField } from "../molecules/TextField";
 import { ModalBar } from "../molecules/ModalBar";
@@ -7,6 +6,7 @@ import { TextFieldMask } from "../molecules/TextFieldMask";
 import ufData from '../../db/UF.json'
 import productData from '../../db/Product.json'
 import { SelectField } from "../molecules/SelectField";
+import { IconButton } from "../molecules/IconButton";
 
 
 const ModalContainer = styled.div`
@@ -83,7 +83,9 @@ export const Modal = () => {
   return (
     <ModalContainer>
       <ModalContainerListItems>
-        <ModalBar icon='product' name="Cadastrar Produtor Rural" />
+        <ModalBar
+          iconName='add'
+          name="Cadastrar Produtor Rural" />
         <ModalListItems>
           <ModalItem>
             <TextFieldMask name='document' placeHolder="CPF ou CNPJ" mask="99.999.999/9999-99" key="1" />
@@ -101,10 +103,18 @@ export const Modal = () => {
         </ModalListItems>
         <ModalListItemsButton>
           <ModalItemButton >
-            <Button onClick={handleClick}>Fechar</Button>
+            <IconButton
+              isLoadingIcon={false}
+              label="Fechar"
+              iconName="closed"
+              onClick={() => { }} />
           </ModalItemButton>
           <ModalItemButton >
-            <Button onClick={handleClick}>Salvar</Button>
+            <IconButton
+              isLoadingIcon={false}
+              label="Salvar"
+              iconName="save"
+              onClick={handleClick} />
           </ModalItemButton>
         </ModalListItemsButton>
       </ModalContainerListItems>
