@@ -18,7 +18,6 @@ const ModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 10px rgb(0 0 0 / 0.2);
   display: flex;
-  
   z-index:1200;
   overflow: hidden;
   justify-content: center;
@@ -26,17 +25,18 @@ const ModalContainer = styled.div`
 `;
 
 const ModalContainerListItems = styled.div`
-overflow:scroll;
+overflow:hidden;
 display:flex;
 gap:5px;
 background:white;
 justify-content:center;
 flex-direction:column;
 border-radius:8px;
+
 `
 
 const ModalListItems = styled.div`
-width:500px;
+max-width:800px;
 justify-content:center;
 display:flex;
 flex-direction:row;
@@ -46,7 +46,7 @@ background:white;
  `
 
 const ModalListItemsButton = styled.div`
- width:500px;
+max-width:800px;
  display:flex;
  flex-direction:row;
  justify-content: center;
@@ -54,6 +54,7 @@ const ModalListItemsButton = styled.div`
  gap:5px;
  width:50vw;
  background:white;
+ padding:10px;
   `
 
 const ModalItem = styled.div`
@@ -70,7 +71,7 @@ flex-direction:row;
  `
 
 
-export const Modal = () => {
+export const ModalHome = () => {
   const { isActiveModal, setIsActiveModal } = useProviderGlobal()
 
   if (!isActiveModal) return
@@ -107,7 +108,7 @@ export const Modal = () => {
               isLoadingIcon={false}
               label="Fechar"
               iconName="closed"
-              onClick={() => { }} />
+              onClick={handleClick} />
           </ModalItemButton>
           <ModalItemButton >
             <IconButton
