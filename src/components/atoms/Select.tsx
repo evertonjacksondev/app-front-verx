@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Select = styled.select`
-      width:100%;
+      width:256px;
       color: #787575;
       background-color:#F5F5F5; 
       height:54px;
@@ -12,7 +12,7 @@ export const Select = styled.select`
      cursor: pointer;
     option {
       max-width:100%;
-      width:100%;
+      width:256px;
       height:256px;
       color: #787575;
       background-color:#F5F5F5; 
@@ -21,6 +21,4 @@ export const Select = styled.select`
       font-size: 14px;
       border-radius: 10px;
        }
- 
-
 `;

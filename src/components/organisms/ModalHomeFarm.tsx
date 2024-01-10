@@ -6,7 +6,8 @@ import { IconButton } from "../molecules/IconButton";
 import { FarmRequest } from "../../Http/request/FarmRequest";
 import { ChangeEvent, useState } from "react";
 import { useSnackbar } from "notistack";
-import { FarmDto } from "../../Http/dto/Farm-dto";
+import { FarmDto, FarmErrosDto } from "../../Http/dto/Farm-dto";
+import { SelectField } from "../molecules/SelectField";
 
 
 const ModalContainer = styled.div`
@@ -59,6 +60,9 @@ max-width:800px;
 
 const ModalItem = styled.div`
  width:250px;
+ display:flex;
+ flex-direction:column;
+
  margin:5px;
   `
 
@@ -70,56 +74,110 @@ width:250px;
 flex-direction:row;
  `
 
+const ItemButton = styled.div`
+border-radius:8px;
+justify-content:center;
+display:flex;
+width:150px;
 
-export const ModalHomeFarm = () => {
-  const { isActiveModalFarm = false, setIsActiveModalFarm } = useProviderGlobal()
-  const [value, setValue] = useState<FarmDto>()
+
+ `
+
+interface IModalHomeFarmProps {
+  selectValues: any
+}
+
+export const ModalHomeFarm = ({ selectValues }: IModalHomeFarmProps) => {
+  const { isActiveModalFarm = false, setIsActiveModalFarm, isActiveModalProducer, setIsActiveModalProducer } = useProviderGlobal()
+  const [farmValues, setFarmValues] = useState<FarmDto>()
+  const [errosInput, setErrosInput] = useState<FarmErrosDto>()
   const { enqueueSnackbar } = useSnackbar()
   if (!isActiveModalFarm) return
+  const farmRequest = new FarmRequest()
 
 
   const handleClick = async () => {
+    try {
 
-    if (value?.farm_name && value.farm_name && value.farm_area_used) {
+      if (validateForm() && farmValues?.farm_name && farmValues.farm_area_total && farmValues.farm_area_used) {
 
-      const farmRequest = new FarmRequest()
-      await farmRequest.createFarm(value)
-        .then(() => {
-          enqueueSnackbar('Fazenda Criada!', { variant: 'success' })
-          handleClosed()
-          handleClear()
-        })
-        .catch((error) => {
-          enqueueSnackbar(error.message, { variant: 'error' })
-          handleClosed()
-          handleClear()
-        })
 
+        await farmRequest.createFarm(farmValues)
+          .then(() => {
+            enqueueSnackbar('Fazenda Criada!', { variant: 'success' })
+            handleClosed()
+            handleClear()
+          })
+          .catch((error) => {
+            enqueueSnackbar(error.message, { variant: 'error' })
+            handleClosed()
+            handleClear()
+          })
+
+      }
+    } catch (error: any) {
+      setErrosInput(error)
     }
   }
+
   const handleClosed = async () => {
 
     setIsActiveModalFarm(!isActiveModalFarm)
     handleClear()
   }
-  const handleClear = () => {
 
-    setValue({})
+  const handleClear = () => {
+    setErrosInput({
+      farm_area_total: { message: '' },
+      farm_area_used: { message: '' },
+      farm_name: { message: '' }
+    })
+    setFarmValues({
+      farm_area_total: 0,
+      farm_area_used: 0,
+      farm_name: '',
+      name_producer: ''
+    })
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const { name, value } = e.target;
-
-
-
-    setValue((currentValue) => {
+    setFarmValues((currentValue: any) => {
       return {
         ...currentValue,
         [name]: value
       }
     })
+
+
   }
+
+  const validateForm = () => {
+
+    let erros = new FarmErrosDto
+
+    if (farmValues && farmValues.farm_area_used > farmValues.farm_area_total) {
+      erros.farm_area_used = { message: 'Area ultilizada não pode ser maior que Area total da fazenda' }
+    }
+    if (!farmValues?.farm_name)
+      erros.farm_name = { message: '*Preenchimento Obrigatório*' }
+
+    if (!farmValues?.farm_area_total)
+      erros.farm_area_total = { message: '*Preenchimento Obrigatório*' }
+
+    if (!farmValues?.farm_area_used)
+      erros.farm_area_used = { message: '*Preenchimento Obrigatório*' }
+
+    if (!farmValues?.name_producer)
+      erros.name_producer = { message: '*Preenchimento Obrigatório*' }
+
+
+    setErrosInput(erros)
+
+    return !erros ? true : false
+  }
+
 
 
   return (
@@ -129,22 +187,50 @@ export const ModalHomeFarm = () => {
           iconName='add'
           name="Cadastrar Fazenda" />
         <ModalListItems>
+
           <ModalItem>
+            <SelectField
+              name="name_producer"
+              defaultValue=""
+              option={selectValues}
+              value={farmValues?.name_producer}
+              placeHolder="Produtor"
+              onChange={handleChange}
+              error={errosInput?.name_producer}
+            />
+
+            <ModalItemButton>
+              <ItemButton >
+                <IconButton
+                  isLoadingIcon={false}
+                  label="Adicionar Produtor"
+                  iconName="add"
+                  onClick={() => setIsActiveModalProducer(!isActiveModalProducer)} />
+              </ItemButton>
+            </ModalItemButton>
+
             <TextField
               name="farm_name"
               placeHolder="Nome da Fazenda"
+              value={farmValues?.farm_name}
               onChange={handleChange}
+              error={errosInput?.farm_name}
             />
             <TextField
               name="farm_area_total"
               placeHolder="Área total em hectares da fazenda"
+              value={farmValues?.farm_area_total}
+              error={errosInput?.farm_area_total}
               onChange={handleChange}
             />
             <TextField
               name="farm_area_used"
               placeHolder="Area Utilizada em Hectares"
+              value={farmValues?.farm_area_used}
               onChange={handleChange}
+              error={errosInput?.farm_area_used}
             />
+
           </ModalItem>
         </ModalListItems>
         <ModalListItemsButton>
@@ -161,7 +247,9 @@ export const ModalHomeFarm = () => {
               label="Salvar"
               iconName="save"
               onClick={handleClick} />
+
           </ModalItemButton>
+
         </ModalListItemsButton>
       </ModalContainerListItems>
     </ModalContainer>

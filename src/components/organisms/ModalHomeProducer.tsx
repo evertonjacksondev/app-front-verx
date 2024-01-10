@@ -9,7 +9,7 @@ import { SelectField } from "../molecules/SelectField";
 import { IconButton } from "../molecules/IconButton";
 import { UserRequest } from "../../Http/request/UserRequest";
 import { ChangeEvent, useState } from "react";
-import { UserDto } from "../../Http/dto/User-dto";
+import { UserDto, UserErrosDto } from "../../Http/dto/User-dto";
 import { useSnackbar } from "notistack";
 import { cnpj, cpf } from 'cpf-cnpj-validator';
 
@@ -78,33 +78,53 @@ flex-direction:row;
 
 export const ModalHomeProducer = () => {
   const { isActiveModalProducer = false, setIsActiveModalProducer } = useProviderGlobal()
-  const [value, setValue] = useState<UserDto>()
+  const [userValues, setUserValues] = useState<UserDto>()
   const [inputMask, setInputMask] = useState<string>("")
+  const [errosInput, setErrosInput] = useState<UserErrosDto>()
   const { enqueueSnackbar } = useSnackbar()
   if (!isActiveModalProducer) return
 
-  const validateCnpjOrCPF = () => {
 
-    if (value?.document_type == 'PF' && value.document) {
-      const validate = cpf.isValid(value.document)
-      if (!validate) enqueueSnackbar('CPF Incorreto', { variant: 'error' })
-      return validate
+  const validateForm = () => {
+
+    let erros = new UserErrosDto
+
+    if (!userValues?.city)
+      erros.city = { message: '*Preenchimento Obrigatório*' }
+
+    if (!userValues?.document)
+      erros.document = { message: '*Preenchimento Obrigatório*' }
+
+    if (userValues?.document_type == 'PF' && userValues.document) {
+      const validate = cpf.isValid(userValues.document)
+      if (!validate) erros.document = { message: '*CPF Incorreto*' }
     }
 
-    if (value?.document_type == 'PJ' && value.document) {
-      const validate = cnpj.isValid(value.document)
-      if (!validate) enqueueSnackbar('CNPJ Incorreto', { variant: 'error' })
-      return validate
+    if (userValues?.document_type == 'PJ' && userValues.document) {
+      const validate = cnpj.isValid(userValues.document)
+      if (!validate) erros.document = { message: '*CNPJ Incorreto*' }
     }
 
-    return false
+    if (!userValues?.document_type)
+      erros.document_type = { message: '*Preenchimento Obrigatório*' }
+
+    if (!userValues?.uf)
+      erros.uf = { message: '*Preenchimento Obrigatório*' }
+
+    if (!userValues?.name)
+      erros.name = { message: '*Preenchimento Obrigatório*' }
+
+    setErrosInput(erros)
+
+    return !erros ? true : false
   }
+
   const handleClick = async () => {
 
-    if ( value?.city && value?.document && value?.name && value?.uf && value?.document_type) {
+    if (validateForm() && userValues?.city && userValues?.document && userValues?.name && userValues?.uf && userValues?.document_type) {
 
       const userRequest = new UserRequest()
-      await userRequest.createUser(value)
+      await userRequest.createUser(userValues)
         .then(() => {
           enqueueSnackbar('Produtor Criado!', { variant: 'success' })
           handleClosed()
@@ -118,14 +138,28 @@ export const ModalHomeProducer = () => {
 
     }
   }
+
   const handleClosed = async () => {
 
     setIsActiveModalProducer(!isActiveModalProducer)
     handleClear()
   }
-  const handleClear = () => {
 
-    setValue({})
+  const handleClear = () => {
+    setErrosInput({
+      city: { message: '' },
+      document: { message: '' },
+      document_type: { message: '' },
+      name: { message: '' },
+      uf: { message: '' }
+    })
+    setUserValues({
+      city: '',
+      document: '',
+      document_type: '',
+      name: '',
+      uf: ''
+    })
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -137,8 +171,7 @@ export const ModalHomeProducer = () => {
       setInputMask(mask);
     }
 
-
-    setValue((currentValue) => {
+    setUserValues((currentValue) => {
       return {
         ...currentValue,
         [name]: value
@@ -154,13 +187,45 @@ export const ModalHomeProducer = () => {
           name="Cadastrar Produtor Rural" />
         <ModalListItems>
           <ModalItem>
-            <SelectField onChange={handleChange} defaultValue="" name="document_type" placeHolder='Tipo de Pessoa' option={documentType}></SelectField>
-            <TextFieldMask onChange={handleChange} name='document' placeHolder="CPF ou CNPJ" mask={inputMask} key="1" />
-            <TextField onChange={handleChange} name="name" placeHolder="Nome do produtor" key="2" />
-            <TextField onChange={handleChange} name="city" placeHolder="Cidade" key="4" />
-            <SelectField onChange={handleChange} defaultValue="UF" name="uf" placeHolder='UF' option={ufData}></SelectField>
+            <SelectField
+              onChange={handleChange}
+              defaultValue=""
+              name="document_type"
+              placeHolder='Tipo de Pessoa'
+              value={userValues?.document_type}
+              error={errosInput?.document_type}
+              option={documentType} />
+            <TextFieldMask
+              onChange={handleChange}
+              name='document'
+              placeHolder="CPF ou CNPJ"
+              value={userValues?.document}
+              error={errosInput?.document}
+              mask={inputMask} />
+            <TextField
+              onChange={handleChange}
+              name="name"
+              placeHolder="Nome do produtor"
+              value={userValues?.name}
+              error={errosInput?.name}
+            />
+            <TextField
+              onChange={handleChange}
+              name="city"
+              placeHolder="Cidade"
+              value={userValues?.city}
+              error={errosInput?.city}
+            />
+            <SelectField
+              onChange={handleChange}
+              defaultValue="UF"
+              name="uf"
+              placeHolder='UF'
+              value={userValues?.uf}
+              error={errosInput?.uf}
+              option={ufData} />
           </ModalItem>
-        
+
         </ModalListItems>
         <ModalListItemsButton>
           <ModalItemButton >

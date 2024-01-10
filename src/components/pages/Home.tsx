@@ -1,16 +1,47 @@
-import { Fragment } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { ModalHomeProducer } from '../organisms/ModalHomeProducer'
-import ListOfProducers from "../../db/ListOfProducers.json"
 import { TableHome } from "../organisms/TableHome"
 import { IconButton } from "../molecules/IconButton"
 import { Container } from "../atoms/Container"
 import { Item } from "../atoms/Item"
 import { DashBoards } from "../organisms/DashBoardHome"
 import { ModalHomeFarm } from "../organisms/ModalHomeFarm"
+import { UserRequest } from "../../Http/request/UserRequest"
 
 export const Home = () => {
+    const [selectValues, setSelectValues] = useState([])
+    const [userValues, setUserValues] = useState([])
+    const userRequest = new UserRequest()
 
+    const handleOptions = async () => {
 
+        const optionsUsersRaw = await userRequest.listAllUserSelect();
+        if (optionsUsersRaw) {
+
+            const options = optionsUsersRaw.map(
+                (options: any) => {
+                    return {
+                        id: options.id,
+                        name: options.document,
+                        value: options.name
+                    }
+                })
+            console.log(options)
+            setSelectValues(options)
+        }
+
+    };
+
+    const getUsers = async () => {
+
+        const user = await userRequest.listAllUser()
+        setUserValues(user)
+    }
+
+    useEffect(() => {
+        handleOptions()
+        getUsers()
+    }, []);
 
     const handleOpen = () => {
         console.log('cheguei open')
@@ -23,11 +54,10 @@ export const Home = () => {
     const columns = [
         {
             title: 'Nome do Produtor',
-            dataIndex: 'nameClient',
-            key: 'nameClient',
+            dataIndex: 'name',
+            key: 'name',
             width: '19%',
         },
-
         {
             title: 'CPF/CNPJ',
             dataIndex: 'document',
@@ -42,12 +72,10 @@ export const Home = () => {
         },
         {
             title: 'UF',
-            dataIndex: 'UF',
-            key: 'UF',
+            dataIndex: 'uf',
+            key: 'uf',
             width: '5%',
         },
-
-
         {
             title: 'Ações',
             dataIndex: 'action',
@@ -82,9 +110,9 @@ export const Home = () => {
     return (
         <Fragment>
             <DashBoards />
-            <ModalHomeFarm />
+            <ModalHomeFarm selectValues={selectValues} />
             <ModalHomeProducer />
-            <TableHome columns={columns} dataSource={ListOfProducers} />
+            <TableHome columns={columns} dataSource={userValues} />
         </Fragment>
     )
 }

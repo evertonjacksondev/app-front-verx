@@ -18,7 +18,7 @@ O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
 
 10. [ ] - O usuário deverá ter a possibilidade de cadastrar, editar, e excluir produtores rurais.
 11. [ ] - O sistema deverá validar CPF e CNPJ digitados incorretamente.
-12. [ ] - A soma de área agrícultável e vegetação, não deverá ser maior que a área total da fazenda
+12. [x] - A soma de área agrícultável e vegetação, não deverá ser maior que a área total da fazenda
 13. [ ] - Cada produtor pode plantar mais de uma cultura em sua Fazenda.
 14. [x] - A plataforma deverá ter um Dashboard que exiba:
 15. [x] - Total de fazendas em quantidade
