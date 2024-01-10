@@ -46,11 +46,25 @@ export class UserRequest {
                 url: `/users/list`,
             })
 
-            return response
-        } catch (error) {
-            return error
+            return response.data
+        } catch ({ response }: any) {
+            throw response.data
         }
     }
+
+    async listAllUserSelect() {
+        try {
+            const response = await instance({
+                method: 'get',
+                url: `/users/list/select`,
+            })
+
+            return response.data
+        } catch ({ response }: any) {
+            throw response.data
+        }
+    }
+
 
     async deleteUser(params: number) {
         try {
