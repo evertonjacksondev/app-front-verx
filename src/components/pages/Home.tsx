@@ -1,15 +1,16 @@
 import { Fragment } from "react"
-import { ModalHome } from '../organisms/ModalHome'
+import { ModalHomeProducer } from '../organisms/ModalHomeProducer'
 import ListOfProducers from "../../db/ListOfProducers.json"
 import { TableHome } from "../organisms/TableHome"
 import { IconButton } from "../molecules/IconButton"
 import { Container } from "../atoms/Container"
 import { Item } from "../atoms/Item"
 import { DashBoards } from "../organisms/DashBoardHome"
+import { ModalHomeFarm } from "../organisms/ModalHomeFarm"
 
 export const Home = () => {
 
-   
+
 
     const handleOpen = () => {
         console.log('cheguei open')
@@ -81,8 +82,9 @@ export const Home = () => {
     return (
         <Fragment>
             <DashBoards />
-            <ModalHome />
-            <TableHome columns={columns} dataSource={ListOfProducers}/>
+            <ModalHomeFarm />
+            <ModalHomeProducer />
+            <TableHome columns={columns} dataSource={ListOfProducers} />
         </Fragment>
     )
 }

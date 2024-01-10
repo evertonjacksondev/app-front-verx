@@ -1,190 +1,190 @@
 [
     {
       "id": 1,
-      "value": "AC",
-      "name": "Acre",
+      "name": "AC",
+     "value": "Acre",
       "capital": "Rio Branco",
       "regiao": "Norte"
     },
     {
       "id": 2,
-      "value": "AL",
-      "name": "Alagoas",
+      "name": "AL",
+     "value": "Alagoas",
       "capital": "Maceió",
       "regiao": "Nordeste"
     },
     {
       "id": 3,
-      "value": "AP",
-      "name": "Amapá",
+      "name": "AP",
+     "value": "Amapá",
       "capital": "Macapá",
       "regiao": "Norte"
     },
     {
       "id": 4,
-      "value": "AM",
-      "name": "Amazonas",
+      "name": "AM",
+     "value": "Amazonas",
       "capital": "Manaus",
       "regiao": "Norte"
     },
     {
       "id": 5,
-      "value": "BA",
-      "name": "Bahia",
+      "name": "BA",
+     "value": "Bahia",
       "capital": "Salvador",
       "regiao": "Nordeste"
     },
     {
       "id": 6,
-      "value": "CE",
-      "name": "Ceará",
+      "name": "CE",
+     "value": "Ceará",
       "capital": "Fortaleza",
       "regiao": "Nordeste"
     },
     {
       "id": 7,
-      "value": "DF",
-      "name": "Distrito Federal",
+      "name": "DF",
+     "value": "Distrito Federal",
       "capital": "Brasília",
       "regiao": "Centro-Oeste"
     },
     {
       "id": 8,
-      "value": "ES",
-      "name": "Espírito Santo",
+      "name": "ES",
+     "value": "Espírito Santo",
       "capital": "Vitória",
       "regiao": "Sudeste"
     },
     {
       "id": 9,
-      "value": "GO",
-      "name": "Goiás",
+      "name": "GO",
+     "value": "Goiás",
       "capital": "Goiânia",
       "regiao": "Centro-Oeste"
     },
     {
       "id": 10,
-      "value": "MA",
-      "name": "Maranhão",
+      "name": "MA",
+     "value": "Maranhão",
       "capital": "São Luís",
       "regiao": "Nordeste"
     },
     {
       "id": 11,
-      "value": "MT",
-      "name": "Mato Grosso",
+      "name": "MT",
+     "value": "Mato Grosso",
       "capital": "Cuiabá",
       "regiao": "Centro-Oeste"
     },
     {
       "id": 12,
-      "value": "MS",
-      "name": "Mato Grosso do Sul",
+      "name": "MS",
+     "value": "Mato Grosso do Sul",
       "capital": "Campo Grande",
       "regiao": "Centro-Oeste"
     },
     {
       "id": 13,
-      "value": "MG",
-      "name": "Minas Gerais",
+      "name": "MG",
+     "value": "Minas Gerais",
       "capital": "Belo Horizonte",
       "regiao": "Sudeste"
     },
     {
       "id": 14,
-      "value": "PA",
-      "name": "Pará",
+      "name": "PA",
+     "value": "Pará",
       "capital": "Belém",
       "regiao": "Norte"
     },
     {
       "id": 15,
-      "value": "PB",
-      "name": "Paraíba",
+      "name": "PB",
+     "value": "Paraíba",
       "capital": "João Pessoa",
       "regiao": "Nordeste"
     },
     {
       "id": 16,
-      "value": "PR",
-      "name": "Paraná",
+      "name": "PR",
+     "value": "Paraná",
       "capital": "Curitiba",
       "regiao": "Sul"
     },
     {
       "id": 17,
-      "value": "PE",
-      "name": "Pernambuco",
+      "name": "PE",
+     "value": "Pernambuco",
       "capital": "Recife",
       "regiao": "Nordeste"
     },
     {
       "id": 18,
-      "value": "PI",
-      "name": "Piauí",
+      "name": "PI",
+     "value": "Piauí",
       "capital": "Teresina",
       "regiao": "Nordeste"
     },
     {
       "id": 19,
-      "value": "RJ",
-      "name": "Rio de Janeiro",
+      "name": "RJ",
+     "value": "Rio de Janeiro",
       "capital": "Rio de Janeiro",
       "regiao": "Sudeste"
     },
     {
       "id": 20,
-      "value": "RN",
-      "name": "Rio Grande do Norte",
+      "name": "RN",
+     "value": "Rio Grande do Norte",
       "capital": "Natal",
       "regiao": "Nordeste"
     },
     {
       "id": 21,
-      "value": "RS",
-      "name": "Rio Grande do Sul",
+      "name": "RS",
+     "value": "Rio Grande do Sul",
       "capital": "Porto Alegre",
       "regiao": "Sul"
     },
     {
       "id": 22,
-      "value": "RO",
-      "name": "Rondônia",
+      "name": "RO",
+     "value": "Rondônia",
       "capital": "Porto Velho",
       "regiao": "Norte"
     },
     {
       "id": 23,
-      "value": "RR",
-      "name": "Roraima",
+      "name": "RR",
+     "value": "Roraima",
       "capital": "Boa Vista",
       "regiao": "Norte"
     },
     {
       "id": 24,
-      "value": "SC",
-      "name": "Santa Catarina",
+      "name": "SC",
+     "value": "Santa Catarina",
       "capital": "Florianópolis",
       "regiao": "Sul"
     },
     {
       "id": 25,
-      "value": "SP",
-      "name": "São Paulo",
+      "name": "SP",
+     "value": "São Paulo",
       "capital": "São Paulo",
       "regiao": "Sudeste"
     },
     {
       "id": 26,
-      "value": "SE",
-      "name": "Sergipe",
+      "name": "SE",
+     "value": "Sergipe",
       "capital": "Aracaju",
       "regiao": "Nordeste"
     },
     {
       "id": 27,
-      "value": "TO",
-      "name": "Tocantins",
+      "name": "TO",
+     "value": "Tocantins",
       "capital": "Palmas",
       "regiao": "Norte"
     }

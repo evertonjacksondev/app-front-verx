@@ -1,16 +1,17 @@
 
-import { Fragment } from "react";
+import { ChangeEventHandler, Fragment } from "react";
 import { Input } from "../atoms/Input";
 
 interface ITextField {
     name: string
     placeHolder: string
+    onChange?:ChangeEventHandler
 }
 
-export const TextField = ({ name, placeHolder }: ITextField) => {
+export const TextField = ({ name, placeHolder,onChange }: ITextField) => {
     return (
         <Fragment>
             {placeHolder}
-            <Input name={name} />
+            <Input onChange={onChange} name={name} />
         </Fragment>)
 }

@@ -2,8 +2,10 @@ import { Fragment, createContext, useContext, useState } from "react";
 
 
 interface IGlobalContextProps {
-    isActiveModal: Boolean
-    setIsActiveModal: (isActiveModal: boolean) => void
+    isActiveModalProducer: Boolean
+    setIsActiveModalProducer: (isActiveModalProducer: boolean) => void
+    isActiveModalFarm: Boolean
+    setIsActiveModalFarm: (isActiveModalFarm: boolean) => void
 }
 interface IProviderGlobalProps {
     children: React.ReactNode
@@ -19,18 +21,23 @@ export function useProviderGlobal() {
 
 export const ProviderGlobal = ({ children }: IProviderGlobalProps) => {
 
-    const [isActiveModal, setIsActive] = useState<Boolean>(false)
+    const [isActiveModalProducer, setIsActiveProducer] = useState<Boolean>(false)
+    const [isActiveModalFarm, setIsActiveFarm] = useState<Boolean>(false)
 
-    const handleOpenModal = () => {
-        setIsActive(!isActiveModal)
+    const handleOpenModalProducer = () => {
+        setIsActiveProducer(!isActiveModalProducer)
     }
-
+    const handleOpenModalFarm = () => {
+        setIsActiveFarm(!isActiveModalFarm)
+    }
     return (
         <Fragment>
             <GlobalContext.Provider
                 value={{
-                    isActiveModal: isActiveModal,
-                    setIsActiveModal: handleOpenModal
+                    isActiveModalProducer: isActiveModalProducer,
+                    setIsActiveModalProducer: handleOpenModalProducer,
+                    isActiveModalFarm: isActiveModalFarm,
+                    setIsActiveModalFarm: handleOpenModalFarm,
                 }}
             >
                 {children}

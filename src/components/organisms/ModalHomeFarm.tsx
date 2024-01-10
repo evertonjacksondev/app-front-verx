@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { useProviderGlobal } from "../../context/global.context";
 import { TextField } from "../molecules/TextField";
 import { ModalBar } from "../molecules/ModalBar";
-import { TextFieldMask } from "../molecules/TextFieldMask";
-import ufData from '../../db/UF.json'
-import productData from '../../db/Product.json'
-import { SelectField } from "../molecules/SelectField";
 import { IconButton } from "../molecules/IconButton";
+import { FarmRequest } from "../../Http/request/FarmRequest";
+import { ChangeEvent, useState } from "react";
+import { useSnackbar } from "notistack";
+import { FarmDto } from "../../Http/dto/Farm-dto";
 
 
 const ModalContainer = styled.div`
@@ -71,13 +71,54 @@ flex-direction:row;
  `
 
 
-export const ModalHome = () => {
-  const { isActiveModal = false, setIsActiveModal } = useProviderGlobal()
+export const ModalHomeFarm = () => {
+  const { isActiveModalFarm = false, setIsActiveModalFarm } = useProviderGlobal()
+  const [value, setValue] = useState<FarmDto>()
+  const { enqueueSnackbar } = useSnackbar()
+  if (!isActiveModalFarm) return
 
-  if (!isActiveModal) return
 
-  const handleClick = () => {
-    setIsActiveModal(!isActiveModal)
+  const handleClick = async () => {
+
+    if (value?.farm_name && value.farm_name && value.farm_area_used) {
+
+      const farmRequest = new FarmRequest()
+      await farmRequest.createFarm(value)
+        .then(() => {
+          enqueueSnackbar('Fazenda Criada!', { variant: 'success' })
+          handleClosed()
+          handleClear()
+        })
+        .catch((error) => {
+          enqueueSnackbar(error.message, { variant: 'error' })
+          handleClosed()
+          handleClear()
+        })
+
+    }
+  }
+  const handleClosed = async () => {
+
+    setIsActiveModalFarm(!isActiveModalFarm)
+    handleClear()
+  }
+  const handleClear = () => {
+
+    setValue({})
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const { name, value } = e.target;
+
+
+
+    setValue((currentValue) => {
+      return {
+        ...currentValue,
+        [name]: value
+      }
+    })
   }
 
 
@@ -86,20 +127,24 @@ export const ModalHome = () => {
       <ModalContainerListItems>
         <ModalBar
           iconName='add'
-          name="Cadastrar Produtor Rural" />
+          name="Cadastrar Fazenda" />
         <ModalListItems>
           <ModalItem>
-            <TextFieldMask name='document' placeHolder="CPF ou CNPJ" mask="99.999.999/9999-99" key="1" />
-            <TextField name="nameClient" placeHolder="Nome do produtor" key="2" />
-            <TextField name="nameFarm" placeHolder="Nome da Fazenda" key="3" />
-            <TextField name="city" placeHolder="Cidade" key="4" />
-          </ModalItem>
-          <ModalItem>
-            <SelectField defaultValue="UF" name="UF" placeHolder='UF' option={ufData}></SelectField>
-            <TextField name="farmArea" placeHolder="Área total em hectares da fazenda" key="6" />
-            <TextField name="availableArea" placeHolder="Área agricultável em hectares" key="7" />
-            <TextField name="unavailableArea" placeHolder="Área de vegetação em hectares" key="8" />
-            <SelectField defaultValue="UF" name="product" placeHolder="Culturas plantadas" option={productData} key="9" />
+            <TextField
+              name="farm_name"
+              placeHolder="Nome da Fazenda"
+              onChange={handleChange}
+            />
+            <TextField
+              name="farm_area_total"
+              placeHolder="Área total em hectares da fazenda"
+              onChange={handleChange}
+            />
+            <TextField
+              name="farm_area_used"
+              placeHolder="Area Utilizada em Hectares"
+              onChange={handleChange}
+            />
           </ModalItem>
         </ModalListItems>
         <ModalListItemsButton>
@@ -108,7 +153,7 @@ export const ModalHome = () => {
               isLoadingIcon={false}
               label="Fechar"
               iconName="closed"
-              onClick={handleClick} />
+              onClick={handleClosed} />
           </ModalItemButton>
           <ModalItemButton >
             <IconButton

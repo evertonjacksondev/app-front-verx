@@ -16,6 +16,7 @@ export const Button = styled.button<IButtonProps>`
   width:${(props) => (props.width ? props.width : '100%')} ;
   height:${(props) => (props.height ? props.height : '50px')} ;
   font-size: 12px;
+  
   display: flex;
   align-items: center;
   justify-content: center;

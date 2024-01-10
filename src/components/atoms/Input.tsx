@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 
@@ -6,6 +7,7 @@ interface IInputProps {
     radius?: string;
     width?: string;
     height?: string;
+
 }
 
 

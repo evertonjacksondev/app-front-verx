@@ -23,6 +23,7 @@ width:1100px;
 const ContainerItemTableButton = styled.div`
 display:flex;
 width:1100px;
+gap:8px;
 justify-content:flex-end;
 
 `
@@ -31,7 +32,8 @@ const ItemButton = styled.div`
 
 `
 export const TableHome = ({ columns, dataSource }: ITableProps) => {
-    const { isActiveModal, setIsActiveModal } = useProviderGlobal()
+    const { isActiveModalFarm, setIsActiveModalFarm } = useProviderGlobal()
+    const { isActiveModalProducer, setIsActiveModalProducer } = useProviderGlobal()
 
     return (
         <ContainerTable>
@@ -41,7 +43,14 @@ export const TableHome = ({ columns, dataSource }: ITableProps) => {
                         iconName="add"
                         label="Adicionar Produtor"
                         isLoadingIcon={false}
-                        onClick={() => setIsActiveModal(!isActiveModal)} />
+                        onClick={() => setIsActiveModalProducer(!isActiveModalProducer)} />
+                </ItemButton>
+                <ItemButton>
+                    <IconButton
+                        iconName="add"
+                        label="Adicionar Fazenda"
+                        isLoadingIcon={false}
+                        onClick={() => setIsActiveModalFarm(!isActiveModalFarm)} />
                 </ItemButton>
             </ContainerItemTableButton>
             <ItemTable>
